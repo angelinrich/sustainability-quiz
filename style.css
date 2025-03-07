@@ -20,6 +20,14 @@ body {
     text-align: center;
     animation: fadeIn 0.5s ease-in-out;
 }
+.quiz-image {
+    display: block;
+    max-width: 100%;
+    width: 250px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
 
 h2 {
     color: #2c3e50;
