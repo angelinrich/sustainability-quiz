@@ -31,6 +31,27 @@ const progressBar = document.getElementById("progress-bar");
 const questionNumberEl = document.getElementById("question-number");
 const resultsEl = document.getElementById("results");
 
+function bernoulli(p) {
+    return Math.random() < p ? 1 : 0;
+}
+
+function poisson(lambda) {
+    let L = Math.exp(-lambda);
+    let k = 0, p = 1;
+    do {
+        k++;
+        p *= Math.random();
+    } while (p > L);
+    return k - 1;
+}
+
+function normalDist(mean, stddev) {
+    let u = 1 - Math.random();
+    let v = 1 - Math.random();
+    let z = Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+    return mean + z * stddev;
+}
+
 function loadQuestion() {
     nextButton.disabled = true;
     questionNumberEl.innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
@@ -88,14 +109,44 @@ prevButton.addEventListener("click", () => {
     }
 });
 
+function monteCarloSimulation(baseCO2, simulations = 10000) {
+    let results = [];
+    for (let i = 0; i < simulations; i++) {
+        let noise = normalDist(1, 0.1);  // Small variability
+        results.push(baseCO2 * noise);
+    }
+    return results;
+}
+
 function calculateResults() {
-    const yearlyCO2 = userResponses.reduce((sum, index, i) => sum + questions[i].co2Impact[index], 0);
-    const lifetimeCO2 = yearlyCO2 * 80; // Assume 80-year lifespan
+    let totalCO2 = 0;
+    for (let i = 0; i < questions.length; i++) {
+        let selectedIndex = userResponses[i];
+        let question = questions[i];
+        if (selectedIndex !== null) {
+            let impact = question.co2Impact[selectedIndex];
+
+            // Apply probability distributions where needed
+            if (question.probabilityType === "bernoulli") {
+                impact *= bernoulli(question.p);
+            } else if (question.probabilityType === "poisson") {
+                impact *= poisson(question.lambda);
+            } else if (question.probabilityType === "normal") {
+                impact = normalDist(question.mean, question.stddev);
+            }
+
+            totalCO2 += impact;
+        }
+    }
+
+    const lifetimeCO2 = totalCO2 * 80;  // Assume 80-year lifespan
+    const simulations = monteCarloSimulation(lifetimeCO2);
+    const averageSimulatedCO2 = simulations.reduce((a, b) => a + b, 0) / simulations.length;
 
     let badge;
-    if (lifetimeCO2 < 1500000) {
+    if (averageSimulatedCO2 < 1500000) {
         badge = "🌍 Eco Hero (Great job!)";
-    } else if (lifetimeCO2 < 4000000) {
+    } else if (averageSimulatedCO2 < 4000000) {
         badge = "🚗 Sustainability Starter (Room to improve!)";
     } else {
         badge = "🔥 Carbon Overloader (Time to rethink!)";
@@ -103,8 +154,14 @@ function calculateResults() {
 
     resultsEl.innerHTML = `
         <h3>Your Results</h3>
-        <p><strong>Estimated Lifetime CO₂ Impact:</strong> ${lifetimeCO2.toLocaleString()} kg</p>
+        <p><strong>Estimated Lifetime CO₂ Impact:</strong> ${averageSimulatedCO2.toLocaleString()} kg</p>
         <p><strong>Badge:</strong> ${badge}</p>
+        <h4>🌱 Suggested Improvements:</h4>
+        <ul>
+            <li>Try carpooling or biking instead of driving alone.</li>
+            <li>Reduce meat consumption to lower your food-related footprint.</li>
+            <li>Switch to energy-efficient appliances to save power.</li>
+        </ul>
     `;
     resultsEl.style.display = "block";
     questionEl.style.display = "none";
@@ -112,5 +169,6 @@ function calculateResults() {
     nextButton.style.display = "none";
     prevButton.style.display = "none";
 }
+
 
 loadQuestion();
