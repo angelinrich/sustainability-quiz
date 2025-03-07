@@ -143,11 +143,12 @@ function calculateResults() {
     const simulations = monteCarloSimulation(lifetimeCO2);
     const averageSimulatedCO2 = simulations.reduce((a, b) => a + b, 0) / simulations.length;
 
-    let badge, improvementSuggestions;
+    let badge, improvementSuggestions, newImageSrc;
 
     if (averageSimulatedCO2 < 1500000) {
         badge = "🌍 Eco Hero (Great job!)";
         improvementSuggestions = "<p>🌟 Keep being awesome! You're making a positive impact! 🌟</p>";
+        newImageSrc = "happy.png";
     } else if (averageSimulatedCO2 < 4000000) {
         badge = "🚗 Sustainability Starter (Room to improve!)";
         improvementSuggestions = `
@@ -157,6 +158,7 @@ function calculateResults() {
                 <li>💡 Upgrade to LED lights and energy-efficient appliances.</li>
             </ul>
         `;
+        newImageSrc = "sustainability1.png";
     } else {
         badge = "🔥 Carbon Overloader (Time to rethink!)";
         improvementSuggestions = `
@@ -168,8 +170,9 @@ function calculateResults() {
                 <li>🌲 Offset your emissions by supporting reforestation projects.</li>
             </ul>
         `;
+        newImageSrc = "sad.png";
     }
-
+    document.querySelector(".quiz-image").src = newImageSrc;
     // Convert lifetime CO₂ impact into real-world comparisons
     const equivalentFlights = (averageSimulatedCO2 / 90_000).toFixed(1);  // 90,000 kg per transatlantic flight
     const equivalentCars = (averageSimulatedCO2 / 4_600).toFixed(1);  // 4,600 kg per car per year
