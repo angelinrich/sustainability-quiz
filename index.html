@@ -144,7 +144,6 @@
         ];
 
         let currentQuestionIndex = 0;
-        let score = 0;
 
         const questionEl = document.getElementById("question");
         const optionsEl = document.getElementById("options");
@@ -165,7 +164,6 @@
                 const radioInput = document.createElement("input");
                 radioInput.type = "radio";
                 radioInput.name = "answer";
-                radioInput.value = currentQuestion.scores[index];
                 radioInput.id = `option${index}`;
 
                 const radioLabel = document.createElement("label");
@@ -185,7 +183,6 @@
         nextButton.addEventListener("click", () => {
             const selectedOption = document.querySelector('input[name="answer"]:checked');
             if (selectedOption) {
-                score += parseInt(selectedOption.value);
                 currentQuestionIndex++;
 
                 if (currentQuestionIndex < questions.length) {
@@ -196,24 +193,7 @@
             }
         });
 
-        function showResult() {
-            questionEl.style.display = "none";
-            optionsEl.style.display = "none";
-            nextButton.style.display = "none";
-            questionNumberEl.style.display = "none";
-
-            let message;
-            if (score >= 25) {
-                message = "You're a sustainability champion! 🌍";
-            } else if (score >= 15) {
-                message = "You're doing well, but there's room to improve! ♻️";
-            } else {
-                message = "You can make more eco-friendly choices! 🌱";
-            }
-
-            resultEl.innerText = `Your sustainability score: ${score}/30\n${message}`;
-            resultEl.style.display = "block";
-        }
+        
 
         loadQuestion();
     </script>
