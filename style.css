@@ -1,1 +1,120 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.quiz-container {
+    background: white;
+    max-width: 500px;
+    width: 90%;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.question {
+    font-size: 18px;
+    color: #34495e;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.options {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    background: #ecf0f1;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.options label:hover {
+    background: #d5dbdb;
+}
+
+.options input {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #27ae60;
+    border-radius: 50%;
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.options input:checked::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #27ae60;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    border: none;
+    background: #27ae60;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: #219150;
+}
+
+button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .quiz-container {
+        width: 95%;
+        padding: 20px;
+    }
+}
 
