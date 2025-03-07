@@ -58,16 +58,89 @@
 
     <script>
         const questions = [
-            { question: "How often do you recycle plastic bottles?", options: ["Always", "Sometimes", "Never"], scores: [3, 2, 0] },
-            { question: "How do you usually commute?", options: ["Public transport / Walking / Biking", "Carpooling", "Driving alone"], scores: [3, 2, 0] },
-            { question: "Do you bring reusable bags when shopping?", options: ["Always", "Sometimes", "Never"], scores: [3, 2, 0] },
-            { question: "How often do you eat meat?", options: ["Never / Rarely", "A few times a week", "Every day"], scores: [3, 1, 0] },
-            { question: "How do you dispose of food waste?", options: ["Compost", "Trash", "Garbage disposal"], scores: [3, 1, 0] },
-            { question: "How do you usually drink water?", options: ["Reusable bottle", "Filtered water", "Plastic water bottles"], scores: [3, 2, 0] },
-            { question: "What type of energy powers your home?", options: ["Renewable (solar, wind)", "Mixed", "Non-renewable (coal, gas)"], scores: [3, 2, 0] },
-            { question: "How often do you turn off lights when leaving a room?", options: ["Always", "Sometimes", "Rarely"], scores: [3, 2, 0] },
-            { question: "Do you use energy-efficient appliances?", options: ["Yes, all", "Some", "No"], scores: [3, 2, 0] },
-            { question: "How long are your showers?", options: ["Less than 5 min", "5-10 min", "More than 10 min"], scores: [3, 2, 0] }
+            [
+  {
+    "question": "How often do you recycle plastic bottles?",
+    "options": ["Always", "Sometimes", "Never"]
+  },
+  {
+    "question": "How do you usually commute?",
+    "options": ["Public transport / Walking / Biking", "Carpooling", "Driving alone"]
+  },
+  {
+    "question": "Do you bring reusable bags when shopping?",
+    "options": ["Always", "Sometimes", "Never"]
+  },
+  {
+    "question": "How often do you eat meat?",
+    "options": ["Never / Rarely", "A few times a week", "Every day"]
+  },
+  {
+    "question": "How do you dispose of food waste?",
+    "options": ["Compost", "Trash", "Garbage disposal"]
+  },
+  {
+    "question": "How do you usually drink water?",
+    "options": ["Reusable bottle", "Filtered water", "Plastic water bottles"]
+  },
+  {
+    "question": "What type of energy powers your home?",
+    "options": ["Renewable (solar, wind)", "Mixed", "Non-renewable (coal, gas)"]
+  },
+  {
+    "question": "How often do you turn off lights when leaving a room?",
+    "options": ["Always", "Sometimes", "Rarely"]
+  },
+  {
+    "question": "Do you use energy-efficient appliances?",
+    "options": ["Yes, all", "Some", "No"]
+  },
+  {
+    "question": "How long are your showers?",
+    "options": ["Less than 5 min", "5-10 min", "More than 10 min"]
+  },
+  {
+    "question": "How often do you buy fast fashion?",
+    "options": ["Rarely / Thrift", "Sometimes", "Often"]
+  },
+  {
+    "question": "Do you use a clothes dryer?",
+    "options": ["Rarely / Hang dry", "Sometimes", "Frequently"]
+  },
+  {
+    "question": "How often do you fly per year?",
+    "options": ["0-1 times", "2-5 times", "More than 5 times"]
+  },
+  {
+    "question": "Do you offset your carbon emissions from flights?",
+    "options": ["Yes", "No, but I try to minimize", "No"]
+  },
+  {
+    "question": "Do you use single-use plastic utensils or containers?",
+    "options": ["Never", "Sometimes", "Frequently"]
+  },
+  {
+    "question": "How often do you eat locally sourced food?",
+    "options": ["Often", "Sometimes", "Rarely"]
+  },
+  {
+    "question": "Do you have a garden or grow any food?",
+    "options": ["Yes", "No, but I’d like to", "No"]
+  },
+  {
+    "question": "How often do you buy secondhand items?",
+    "options": ["Often", "Sometimes", "Rarely"]
+  },
+  {
+    "question": "How do you dispose of old electronics?",
+    "options": ["Recycle / Donate", "Store them", "Throw them away"]
+  },
+  {
+    "question": "What type of vehicle do you use most?",
+    "options": ["Electric / Hybrid", "Fuel-efficient car", "Gas-powered car"]
+  }
+]
+
         ];
 
         let currentQuestionIndex = 0;
