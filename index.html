@@ -12,87 +12,21 @@
         <img src="sustainability1.png" alt="Sustainability Quiz" class="quiz-image">
         <div class="quiz-container">
             <h2>Sustainability Quiz</h2>
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
             <p id="question-number"></p>
             <div id="question" class="question"></div>
             <div id="options" class="options"></div>
-            <button id="next-btn" disabled>Next</button>
+            <div class="button-container">
+                <button id="prev-btn" disabled>Back</button>
+                <button id="next-btn" disabled>Next</button>
+            </div>
+            <div id="results" style="display: none;"></div>
         </div>
     </div>
 
-    <script>
-        const questions = [
-            { question: "How often do you recycle plastic bottles?", options: ["Always", "Sometimes", "Never"], co2Impact: [10, 50, 100] },
-            { question: "How do you usually commute?", options: ["Public transport / Walking / Biking", "Carpooling", "Driving alone"], co2Impact: [500, 2000, 4000] },
-            { question: "Do you bring reusable bags when shopping?", options: ["Always", "Sometimes", "Never"], co2Impact: [20, 80, 200] },
-            { question: "How often do you eat meat?", options: ["Never / Rarely", "A few times a week", "Every day"], co2Impact: [300, 1000, 3000] },
-            { question: "How do you dispose of food waste?", options: ["Compost", "Trash", "Garbage disposal"], co2Impact: [50, 400, 700] },
-            { question: "How often do you fly per year?", options: ["0-1 times", "2-5 times", "More than 5 times"], co2Impact: [1000, 5000, 15000] },
-            { question: "What type of energy powers your home?", options: ["Renewable (solar, wind)", "Mixed", "Non-renewable (coal, gas)"], co2Impact: [500, 3000, 7000] },
-            { question: "How often do you turn off lights when leaving a room?", options: ["Always", "Sometimes", "Rarely"], co2Impact: [50, 200, 500] },
-            { question: "Do you use energy-efficient appliances?", options: ["Yes, all", "Some", "No"], co2Impact: [300, 1000, 3000] },
-            { question: "How long are your showers?", options: ["Less than 5 min", "5-10 min", "More than 10 min"], co2Impact: [200, 600, 1500] },
-            { question: "How often do you buy fast fashion?", options: ["Rarely / Thrift", "Sometimes", "Often"], co2Impact: [100, 700, 2000] },
-            { question: "Do you use a clothes dryer?", options: ["Rarely / Hang dry", "Sometimes", "Frequently"], co2Impact: [200, 800, 2000] },
-            { question: "Do you offset your carbon emissions from flights?", options: ["Yes", "No, but I try to minimize", "No"], co2Impact: [0, 500, 2000] },
-            { question: "Do you use single-use plastic utensils or containers?", options: ["Never", "Sometimes", "Frequently"], co2Impact: [50, 400, 1200] },
-            { question: "How often do you eat locally sourced food?", options: ["Often", "Sometimes", "Rarely"], co2Impact: [100, 600, 2000] },
-            { question: "Do you have a garden or grow any food?", options: ["Yes", "No, but I’d like to", "No"], co2Impact: [50, 300, 1000] },
-            { question: "How often do you buy secondhand items?", options: ["Often", "Sometimes", "Rarely"], co2Impact: [50, 400, 1200] },
-            { question: "How do you dispose of old electronics?", options: ["Recycle / Donate", "Store them", "Throw them away"], co2Impact: [50, 500, 2000] },
-            { question: "What type of vehicle do you use most?", options: ["Electric / Hybrid", "Fuel-efficient car", "Gas-powered car"], co2Impact: [500, 2500, 7000] }
-        ];
-
-        let currentQuestionIndex = 0;
-        const questionEl = document.getElementById("question");
-        const optionsEl = document.getElementById("options");
-        const nextButton = document.getElementById("next-btn");
-        const questionNumberEl = document.getElementById("question-number");
-
-        function loadQuestion() {
-            nextButton.disabled = true;
-            questionNumberEl.innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
-            const currentQuestion = questions[currentQuestionIndex];
-
-            questionEl.innerText = currentQuestion.question;
-            optionsEl.innerHTML = "";
-
-            currentQuestion.options.forEach((option, index) => {
-                const radioInput = document.createElement("input");
-                radioInput.type = "radio";
-                radioInput.name = "answer";
-                radioInput.id = `option${index}`;
-                radioInput.value = currentQuestion.co2Impact[index];
-
-                const radioWrapper = document.createElement("label");
-                radioWrapper.classList.add("radio-container");
-                radioWrapper.appendChild(radioInput);
-                radioWrapper.appendChild(document.createTextNode(option));
-
-                optionsEl.appendChild(radioWrapper);
-
-                radioInput.addEventListener("change", () => {
-                    nextButton.disabled = false;
-                });
-            });
-        }
-
-        nextButton.addEventListener("click", () => {
-            const selectedOption = document.querySelector('input[name="answer"]:checked');
-            if (selectedOption) {
-                currentQuestionIndex++;
-
-                if (currentQuestionIndex < questions.length) {
-                    loadQuestion();
-                } else {
-                    questionEl.innerText = "Thank you for completing the quiz!";
-                    optionsEl.innerHTML = "";
-                    nextButton.style.display = "none";
-                }
-            }
-        });
-
-        loadQuestion();
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
