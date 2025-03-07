@@ -161,8 +161,8 @@ function calculateResults() {
         badge = "🔥 Carbon Overloader (Time to rethink!)";
         improvementSuggestions = `
             <ul>
-                <li>🚗 Reduce driving solo—carpool, use public transport, or bike instead.</li>
-                <li>🥩 Cut back on meat consumption—it has a high carbon footprint.</li>
+                <li>🚗 Reduce driving solo. Carpool, use public transport, or bike instead.</li>
+                <li>🥩 Cut back on meat consumption, it has a high carbon footprint. Did you know that 1 pound of beef requires approximately 1,800 gallons of water? </li>
                 <li>♻️ Recycle more, and avoid single-use plastics.</li>
                 <li>💨 Consider switching to renewable energy for your home.</li>
                 <li>🌲 Offset your emissions by supporting reforestation projects.</li>
