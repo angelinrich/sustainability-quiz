@@ -8,13 +8,36 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px; /* Space between image & quiz */
+    max-width: 1000px;
+    width: 90%;
+}
+
+.quiz-image {
+    max-width: 300px;
+    width: 30%;
+    min-width: 250px;
+    margin-bottom: 0;
+    border-radius: 15px;
+    animation: floatUpDown 3s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
 }
 
 .quiz-container {
     background: white;
-    max-width: 600px;
-    width: 90%;
+    max-width: 500px;
+    width: 100%;
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -22,33 +45,9 @@ body {
     animation: fadeIn 0.5s ease-in-out;
 }
 
-.quiz-image {
-    max-width: 250px;
-    width: 20%;
-    min-width: 200px;
-    margin-bottom: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    
-    animation: floatUpDown 3s ease-in-out infinite;
-}
-
-@keyframes floatUpDown {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-h2 {
-    color: #2c3e50;
-    font-size: 26px;
-    margin-bottom: 10px;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .question {
@@ -129,25 +128,19 @@ button:disabled {
     box-shadow: none;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 768px) {
-    .quiz-container {
-        width: 95%;
-        padding: 30px;
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column; /* Stack on smaller screens */
+        align-items: center;
     }
     
     .quiz-image {
-        width: 30%;
-        min-width: 150px;
+        width: 40%;
+        min-width: 200px;
+    }
+
+    .quiz-container {
+        width: 90%;
+        padding: 30px;
     }
 }
