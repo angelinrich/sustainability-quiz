@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
-    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    background: linear-gradient(135deg, #1e3c72, #2a5298); /* Deep navy-blue gradient */
     margin: 0;
     padding: 0;
     display: flex;
@@ -14,49 +16,57 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 40px; /* Space between image & quiz */
-    max-width: 1000px;
+    gap: 50px; /* Space between image & quiz */
+    max-width: 1100px;
     width: 90%;
 }
 
+/* Floating Sustainability Image */
 .quiz-image {
-    max-width: 300px;
+    max-width: 320px;
     width: 30%;
     min-width: 250px;
-    margin-bottom: 0;
     border-radius: 15px;
     animation: floatUpDown 3s ease-in-out infinite;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Floating Animation */
 @keyframes floatUpDown {
     0% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+    50% { transform: translateY(-12px); }
     100% { transform: translateY(0); }
 }
 
+/* Glassmorphism Card Effect */
 .quiz-container {
-    background: white;
-    max-width: 500px;
-    width: 100%;
-    padding: 40px;
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
     text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Fade-in Animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Styling for Question */
 .question {
     font-size: 22px;
-    color: #34495e;
+    color: #ffffff;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
+/* Options Layout */
 .options {
     text-align: left;
     display: flex;
@@ -68,36 +78,41 @@ body {
 .options label {
     display: flex;
     align-items: center;
-    background: #ecf0f1;
+    background: rgba(255, 255, 255, 0.3);
     padding: 15px;
     width: 100%;
     max-width: 400px;
-    border-radius: 10px;
-    transition: background 0.3s ease-in-out;
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
     cursor: pointer;
     font-size: 18px;
+    color: white;
+    font-weight: 500;
 }
 
 .options label:hover {
-    background: #d5dbdb;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.02);
 }
 
+/* Custom Radio Buttons */
 .options input {
     appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 3px solid #27ae60;
+    width: 22px;
+    height: 22px;
+    border: 3px solid #ffffff;
     border-radius: 50%;
     margin-right: 12px;
     position: relative;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
 }
 
 .options input:checked::before {
     content: "";
     width: 12px;
     height: 12px;
-    background: #27ae60;
+    background: #f8f9fa;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -105,31 +120,36 @@ body {
     border-radius: 50%;
 }
 
+/* Styled Buttons */
 button {
     margin-top: 20px;
     padding: 15px 25px;
     border: none;
-    background: #27ae60;
+    background: #00c9ff; /* Aqua blue */
     color: white;
     font-size: 18px;
+    font-weight: bold;
     border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s ease-in-out;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 201, 255, 0.3);
 }
 
 button:hover {
-    background: #219150;
+    background: #0086c9;
+    transform: translateY(-3px);
 }
 
 button:disabled {
-    background: #bdc3c7;
+    background: #7f8c8d;
     cursor: not-allowed;
     box-shadow: none;
 }
+
+/* Progress Bar */
 .progress-container {
     width: 100%;
-    background: #ddd;
+    background: rgba(255, 255, 255, 0.2);
     height: 8px;
     border-radius: 4px;
     margin: 15px 0;
@@ -139,29 +159,37 @@ button:disabled {
 #progress-bar {
     height: 8px;
     width: 0;
-    background: linear-gradient(to right, green, yellow, red);
+    background: linear-gradient(to right, #0ff, #ffcc00, #ff3b3b);
     transition: width 0.3s ease-in-out;
 }
 
+/* Buttons Container */
 .button-container {
     display: flex;
     justify-content: space-between;
 }
 
+/* Results Styling */
 #results {
     margin-top: 20px;
     font-size: 20px;
     text-align: center;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    color: white;
 }
 
+/* Responsive Design */
 @media (max-width: 900px) {
     .container {
-        flex-direction: column; /* Stack on smaller screens */
+        flex-direction: column; /* Stack elements on smaller screens */
         align-items: center;
     }
     
     .quiz-image {
-        width: 40%;
+        width: 45%;
         min-width: 200px;
     }
 
