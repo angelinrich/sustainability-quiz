@@ -109,7 +109,7 @@ prevButton.addEventListener("click", () => {
     }
 });
 
-function monteCarloSimulation(baseCO2, simulations = 10000) {
+function bootstrap(baseCO2, simulations = 10000) {
     let results = [];
     for (let i = 0; i < simulations; i++) {
         let noise = normalDist(1, 0.1);  // Small variability
@@ -139,55 +139,54 @@ function calculateResults() {
         }
     }
 
-    const lifetimeCO2 = totalCO2 * 80;  // Assume 80-year lifespan
-    const simulations = monteCarloSimulation(lifetimeCO2);
+    const lifetimeCO2 = totalCO2 * 80;  // 80-year lifespan
+    const simulations = bootstrap(lifetimeCO2);
     const averageSimulatedCO2 = simulations.reduce((a, b) => a + b, 0) / simulations.length;
 
     let badge, improvementSuggestions, newImageSrc;
 
     if (averageSimulatedCO2 < 1500000) {
-        badge = "🌍 Eco Hero (Great job!)";
-        improvementSuggestions = "<p>🌟 Keep being awesome! You're making a positive impact! 🌟</p>";
+        badge = "Eco Hero (Great job!)";
+        improvementSuggestions = "<p>Keep being great! You're making a positive impact!</p>";
         newImageSrc = "happy.png";
     } else if (averageSimulatedCO2 < 4000000) {
-        badge = "🚗 Sustainability Starter (Room to improve!)";
+        badge = "Sustainability Starter (Room to improve!)";
         improvementSuggestions = `
             <ul>
-                <li>🚴 Consider biking or walking more often instead of using a car.</li>
-                <li>🥦 Try eating more plant-based meals to reduce food-related emissions.</li>
-                <li>💡 Upgrade to LED lights and energy-efficient appliances.</li>
+                <li>Consider biking or walking more often instead of using a car.</li>
+                <li>Try eating more plant-based meals to reduce food-related emissions.</li>
+                <li>Upgrade to LED lights and energy-efficient appliances.</li>
             </ul>
         `;
         newImageSrc = "sustainability1.png";
     } else {
-        badge = "🔥 Carbon Overloader (Time to rethink!)";
+        badge = "Carbon Overloader (Time to rethink!)";
         improvementSuggestions = `
             <ul>
-                <li>🚗 Reduce driving solo. Carpool, use public transport, or bike instead.</li>
-                <li>🥩 Cut back on meat consumption, it has a high carbon footprint. Did you know that 1 pound of beef requires approximately 1,800 gallons of water? </li>
-                <li>♻️ Recycle more, and avoid single-use plastics.</li>
-                <li>💨 Consider switching to renewable energy for your home.</li>
-                <li>🌲 Offset your emissions by supporting reforestation projects.</li>
+                <li>Reduce driving solo. Carpool, use public transport, or bike instead.</li>
+                <li>Cut back on meat consumption, it has a high carbon footprint. Did you know that 1 pound of beef requires approximately 1,800 gallons of water? </li>
+                <li>Recycle more, and avoid single-use plastics.</li>
+                <li>Consider switching to renewable energy for your home.</li>
+                <li>Offset your emissions by supporting reforestation projects.</li>
             </ul>
         `;
         newImageSrc = "sad.png";
     }
     document.querySelector(".quiz-image").src = newImageSrc;
-    // Convert lifetime CO₂ impact into real-world comparisons
-    const equivalentFlights = (averageSimulatedCO2 / 90_000).toFixed(1);  // 90,000 kg per transatlantic flight
-    const equivalentCars = (averageSimulatedCO2 / 4_600).toFixed(1);  // 4,600 kg per car per year
-    const equivalentTrees = (averageSimulatedCO2 / 22).toFixed(0);  // 22 kg per tree per year
+    const equivalentFlights = (averageSimulatedCO2 / 90_000).toFixed(1);  
+    const equivalentCars = (averageSimulatedCO2 / 4_600).toFixed(1);  
+    const equivalentTrees = (averageSimulatedCO2 / 22).toFixed(0);  
 
     resultsEl.innerHTML = `
         <h3>Your Results</h3>
         <p><strong>Estimated Lifetime CO₂ Impact:</strong> ${averageSimulatedCO2.toLocaleString()} kg</p>
         <p><strong>Badge:</strong> ${badge}</p>
         
-        <h4>🌍 Your Impact in Perspective:</h4>
+        <h4>Your Impact in Perspective:</h4>
         <ul>
-            <li>✈️ Equivalent to taking <strong>${equivalentFlights}</strong> transatlantic flights.</li>
-            <li>🚗 Equivalent to driving a gas-powered car for <strong>${equivalentCars}</strong> years.</li>
-            <li>🌳 It would take <strong>${equivalentTrees}</strong> trees to absorb this amount of CO₂.</li>
+            <li>Equivalent to taking <strong>${equivalentFlights}</strong> transatlantic flights.</li>
+            <li>Equivalent to driving a gas-powered car for <strong>${equivalentCars}</strong> years.</li>
+            <li>It would take <strong>${equivalentTrees}</strong> trees to absorb this amount of CO₂.</li>
         </ul>
 
         <h4>🌱 Suggested Improvements:</h4>
