@@ -21,7 +21,6 @@ body {
     width: 90%;
 }
 
-/* Floating Sustainability Image */
 .quiz-image {
     max-width: 350px;
     width: 35%;
@@ -31,14 +30,12 @@ body {
     animation: floatUpDown 3s ease-in-out infinite;
 }
 
-/* Floating Animation */
 @keyframes floatUpDown {
     0% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0); }
 }
 
-/* Elegant Card with Soft Shadows */
 .quiz-container {
     background: white;
     padding: 45px;
@@ -51,13 +48,11 @@ body {
     border: 1px solid #ddd;
 }
 
-/* Fade-in Animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Headline Font */
 h2 {
     font-family: 'Playfair Display', serif;
     font-size: 28px;
@@ -66,7 +61,6 @@ h2 {
     margin-bottom: 15px;
 }
 
-/* Question Styling */
 .question {
     font-size: 20px;
     color: #444;
@@ -74,7 +68,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Options Styling */
 .options {
     text-align: left;
     display: flex;
@@ -103,7 +96,6 @@ h2 {
     transform: scale(1.02);
 }
 
-/* Custom Radio Buttons */
 .options input {
     appearance: none;
     width: 20px;
@@ -128,7 +120,6 @@ h2 {
     border-radius: 50%;
 }
 
-/* Modern Buttons */
 button {
     margin-top: 20px;
     padding: 14px 24px;
@@ -154,7 +145,6 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* Progress Bar */
 .progress-container {
     width: 100%;
     background: #eee;
@@ -171,13 +161,11 @@ button:disabled {
     transition: width 0.3s ease-in-out;
 }
 
-/* Buttons Container */
 .button-container {
     display: flex;
     justify-content: space-between;
 }
 
-/* Results Styling */
 #results {
     margin-top: 20px;
     font-size: 20px;
@@ -189,7 +177,6 @@ button:disabled {
     color: #3b3b3b;
 }
 
-/* Responsive Design */
 @media (max-width: 900px) {
     .container {
         flex-direction: column;
